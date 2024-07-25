@@ -2,7 +2,7 @@ import express from "express";
 
 const app = express();
 const port = 3000;
-import tasks from "./routes/tasks";
+const tasks = import tasks from "./routes/tasks";
 
 //middleware
 app.use(express.json());
