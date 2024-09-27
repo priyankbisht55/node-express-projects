@@ -4,12 +4,13 @@ const tasks = require("./routes/tasks");
 const connectDB = require("./db/connect");
 const errorHandlerMiddleware = require("./middleware/error-handler");
 require('dotenv').config();
+const notFound = require('./middleware/not-found');
 
-//middleware
-app.use(express.static('./public'))
+// middleware
+app.use(express.static('./public'));
 app.use(express.json());
 
-//routes
+// routes
 
 app.use("/api/v1/tasks", tasks);
 
@@ -23,15 +24,15 @@ app.use(errorHandlerMiddleware);
 // app.patch('/api/v1/tasks/:id')   - update task
 // app.delete('/api/v1/tasks/:id')    - delete task
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 
 const start = async () => {
   try {
     await connectDB(process.env.MONGO_URI);
     app.listen(port, () => console.log(`Server is running on port ${port}...`));
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 };
 
-start();
+start(); 
